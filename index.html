@@ -265,7 +265,7 @@
   }
 
   /* ---------- PLANS ---------- */
-  .plans{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1.8rem; }
+  .plans{ display:grid; grid-template-columns:1fr 1.7fr; gap:1.8rem; align-items:stretch; }
   .plan{
     background:var(--panel); border:1px solid var(--line); border-radius:14px;
     padding:2.6rem 2.3rem; position:relative;
@@ -281,22 +281,46 @@
   }
   .plan-kicker{ font-size:0.78rem; color:var(--gold); letter-spacing:0.04em; margin-bottom:0.4rem; font-weight:700; }
   .plan h3{ font-family:var(--serif); font-size:1.35rem; font-weight:700; margin-bottom:1.2rem; color:var(--ink); }
-  .plan .price{
+  .plan .price, .plan-sub .price{
     font-family:var(--serif); font-size:1.7rem; font-weight:700; color:var(--ink);
     margin-bottom:0.3rem;
   }
-  .plan .price small{ font-family:var(--sans); font-size:0.68rem; color:var(--ink-muted); font-weight:400; display:block; margin-top:0.3rem; }
-  .plan ul{ list-style:none; margin-bottom:2rem; }
-  .plan li{
+  .plan .price small, .plan-sub .price small{ font-family:var(--sans); font-size:0.68rem; color:var(--ink-muted); font-weight:400; display:block; margin-top:0.3rem; }
+  .plan-breakdown{ font-size:0.78rem; color:var(--ink-muted); margin-bottom:1.4rem; }
+  .plan ul, .plan-sub ul{ list-style:none; margin-bottom:2rem; }
+  .plan li, .plan-sub li{
     display:flex; gap:0.7rem; align-items:flex-start;
     font-size:0.9rem; color:var(--ink-muted); padding:0.55rem 0;
     border-top:1px solid var(--line);
   }
-  .plan li:first-child{ border-top:none; }
-  .plan li .check{ flex:none; color:var(--gold); font-weight:700; }
+  .plan li:first-child, .plan-sub li:first-child{ border-top:none; }
+  .plan li .check, .plan-sub li .check{ flex:none; color:var(--gold); font-weight:700; }
+  .plan-note{
+    font-size:0.78rem; color:var(--gold); margin-bottom:0; line-height:1.7;
+  }
   .plan-for{
     font-size:0.82rem; color:var(--ink-muted); border-top:1px dashed var(--line); padding-top:1.2rem;
   }
+
+  /* ---------- PLAN GROUP (運用プラン) ---------- */
+  .plan-group{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:2.6rem 2.3rem; box-shadow:var(--shadow);
+  }
+  .plan-group-head{ margin-bottom:2rem; }
+  .plan-group-head h3{ font-family:var(--serif); font-size:1.35rem; font-weight:700; margin-bottom:0.6rem; color:var(--ink); }
+  .plan-group-head p{ font-size:0.88rem; color:var(--ink-muted); max-width:38em; }
+  .plan-group-body{
+    display:grid; grid-template-columns:1fr 1fr; gap:1.6rem;
+  }
+  .plan-sub{
+    background:var(--bg-alt); border:1px solid var(--line); border-radius:12px;
+    padding:1.8rem 1.6rem; position:relative;
+  }
+  .plan-sub.featured{ border-color:var(--gold); }
+  .plan-sub .plan-badge{ top:-12px; left:1.6rem; }
+  .plan-sub .price{ font-size:1.5rem; }
+  .plan-sub-label{ font-size:0.95rem; font-weight:700; color:var(--ink); margin-bottom:1rem; }
 
   /* ---------- FAQ ---------- */
   .faq-item{ border-top:1px solid var(--line); }
@@ -389,6 +413,7 @@
     .mock{ max-width:420px; }
     .features{ grid-template-columns:1fr; }
     .plans{ grid-template-columns:1fr; }
+    .plan-group-body{ grid-template-columns:1fr; }
   }
   @media (max-width:680px){
     .hero-copy h1{ font-size:clamp(1.05rem, 5.4vw, 1.5rem); }
@@ -479,7 +504,7 @@
       <div class="section-head center">
         <span class="eyebrow">Service</span>
         <h2>個人店にちょうどいいホームページを</h2>
-        <p>手軽に必要な情報だけを素早く伝わるかたちでお客様にご提供</p>
+        <p>本当に必要な情報だけを、迷わず伝わるかたちで。作り込みすぎない、ということも私たちの価値だと考えています。</p>
       </div>
 
       <p class="tags-label">掲載する情報</p>
@@ -532,14 +557,14 @@
     </div>
   </section>
 
-    <section class="alt" id="plans">
+  <section class="alt" id="plans">
     <div class="wrap">
       <div class="section-head center">
         <span class="eyebrow">Plan</span>
-        <h2>ご予算や運用スタイルに合わせて<br>3つのプランをご用意</h2>
+        <h2>ご予算や運用スタイルに合わせて<br>プランをご用意</h2>
       </div>
 
-   <div class="plans plans-grouped">
+      <div class="plans plans-grouped">
         <div class="plan">
           <div class="plan-kicker">買い切りタイプ</div>
           <h3>制作のみプラン</h3>
@@ -638,11 +663,11 @@
         </div>
         <div class="info-row">
           <dt>代表者</dt>
-          <dd><strong>代表取締役　宇都宮　一颯</strong></dd>
+          <dd><strong>代表取締役　●● ●●</strong></dd>
         </div>
         <div class="info-row">
           <dt>設立</dt>
-          <dd><strong>2026年7月</strong></dd>
+          <dd><strong>20●●年●月</strong></dd>
         </div>
         <div class="info-row">
           <dt>事業内容</dt>
@@ -663,7 +688,7 @@
     <p>「こんな内容で作れる?」「うちのお店に合う?」など、お気軽にご相談ください。</p>
     <button type="button" class="btn btn-primary" id="contactToggle">お問い合わせフォームへ</button>
     <div class="contact-icons" id="contactIcons">
-      <a href=https://www.instagram.com/allyon2671?stkn=MXU3MThhOXVycGJ3Mg%3D%3D&utm_source=qr target="_blank" rel="noopener" aria-label="Instagram">
+      <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
         <span>Instagram</span>
       </a>
